@@ -18,9 +18,8 @@ internal static class AvaPlotExtensions
 {
     internal static Pixel ToPixel(this PointerEventArgs e, Visual visual)
     {
-        float x = (float)e.GetPosition(visual).X;
-        float y = (float)e.GetPosition(visual).Y;
-        return new Pixel(x, y);
+        var p = e.GetPosition(visual);
+        return new Pixel(p.X, p.Y);
     }
 
     internal static Key ToKey(this KeyEventArgs e)

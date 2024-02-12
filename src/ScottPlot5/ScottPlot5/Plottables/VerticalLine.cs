@@ -14,8 +14,8 @@ public class VerticalLine : AxisLine
     public VerticalLine()
     {
         Label.ForeColor = Colors.White;
-        Label.FontSize = 14;
-        Label.Bold = true;
+        Label.FontSize = 13;
+        Label.Bold = false;
         Label.Padding = 5;
     }
 
@@ -61,7 +61,7 @@ public class VerticalLine : AxisLine
 
         float y = LabelOppositeAxis
             ? rp.DataRect.Top - Label.Padding
-            : rp.DataRect.Bottom + Label.Padding;
+            : rp.DataRect.Bottom + Label.Padding - 1;
 
         Label.Alignment = LabelOppositeAxis
             ? Alignment.LowerCenter
@@ -71,6 +71,7 @@ public class VerticalLine : AxisLine
         rp.DisableClipping();
 
         using SKPaint paint = new();
+        Label.BackColor = LineStyle.Color;
         Label.Render(rp.Canvas, x, y, paint);
     }
 }

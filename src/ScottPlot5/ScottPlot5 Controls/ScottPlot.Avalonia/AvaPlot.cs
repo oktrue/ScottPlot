@@ -9,6 +9,7 @@ using ScottPlot.Control;
 using SkiaSharp;
 
 using Controls = Avalonia.Controls;
+using Avalonia.Threading;
 
 namespace ScottPlot.Avalonia;
 
@@ -25,6 +26,7 @@ public class AvaPlot : Controls.Control, IPlotControl
 
     public AvaPlot()
     {
+        Focusable = true;
         ClipToBounds = true;
         DisplayScale = DetectDisplayScale();
         Interaction = new Interaction(this);
@@ -37,7 +39,7 @@ public class AvaPlot : Controls.Control, IPlotControl
         private readonly Plot _plot;
 
         public Rect Bounds { get; }
-        public bool HitTest(Point p) => true;
+        public bool HitTest(Point p) => Bounds.Contains(p);
         public bool Equals(ICustomDrawOperation? other) => false;
 
         public CustomDrawOp(Rect bounds, Plot plot)
@@ -53,11 +55,9 @@ public class AvaPlot : Controls.Control, IPlotControl
 
         public void Render(ImmediateDrawingContext context)
         {
-            var leaseFeature = context.TryGetFeature<ISkiaSharpApiLeaseFeature>();
-            if (leaseFeature is null) return;
-
+            if (!context.TryGetFeature<ISkiaSharpApiLeaseFeature>(out var leaseFeature)) return;
             using var lease = leaseFeature.Lease();
-            ScottPlot.PixelRect rect = new(0, (float)Bounds.Width, (float)Bounds.Height, 0);
+            PixelRect rect = new(0, (float)Bounds.Width, (float)Bounds.Height, 0);
             _plot.Render(lease.SkCanvas, rect);
         }
     }
@@ -71,8 +71,25 @@ public class AvaPlot : Controls.Control, IPlotControl
 
     public void Refresh()
     {
-        InvalidateVisual();
+        //if (!_readyToRefresh) return;
+        //_readyToRefresh = false;
+        //_top?.RequestAnimationFrame(Tick);
+        Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
     }
+
+    //private TopLevel? _top;
+    //private bool _readyToRefresh = true;
+
+    //protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    //{
+    //    _top = TopLevel.GetTopLevel(this);
+    //    base.OnAttachedToVisualTree(e);
+    //}
+
+    //private void Tick(TimeSpan timeSpan)
+    //{
+    //    _readyToRefresh = true;
+    //}
 
     public void ShowContextMenu(Pixel position)
     {

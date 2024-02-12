@@ -95,12 +95,8 @@ public class CandlestickPlot(IOHLCSource data) : IPlottable
             float close = Axes.GetPixelY(ohlc.Close);
 
             // center line
-            using SKPath path = new();
-            path.MoveTo(center, top);
-            path.LineTo(center, bottom);
-
             lineStyle.ApplyToPaint(paint);
-            rp.Canvas.DrawPath(path, paint);
+            rp.Canvas.DrawLine(new(center, top), new(center, bottom), paint);
 
             // rectangle
             SKRect rect = new(left, Math.Max(open, close), right, Math.Min(open, close));

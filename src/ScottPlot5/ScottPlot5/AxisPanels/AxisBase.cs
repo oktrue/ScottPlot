@@ -107,6 +107,7 @@ public abstract class AxisBase
             // draw tick
             paint.Color = tick.IsMajor ? majorStyle.Color.ToSKColor() : minorStyle.Color.ToSKColor();
             paint.StrokeWidth = tick.IsMajor ? majorStyle.Width : minorStyle.Width;
+            paint.IsAntialias = false;
             float tickLength = tick.IsMajor ? majorStyle.Length : minorStyle.Length;
             float xPx = axis.GetPixel(tick.Position, panelRect);
             float y = axis.Edge == Edge.Bottom ? panelRect.Top : panelRect.Bottom;
@@ -145,6 +146,7 @@ public abstract class AxisBase
             // draw tick
             paint.Color = tick.IsMajor ? majorStyle.Color.ToSKColor() : minorStyle.Color.ToSKColor();
             paint.StrokeWidth = tick.IsMajor ? majorStyle.Width : minorStyle.Width;
+            paint.IsAntialias = false;
             float tickLength = tick.IsMajor ? majorStyle.Length : minorStyle.Length;
             float x = axis.Edge == Edge.Left ? panelRect.Right : panelRect.Left;
             float y = axis.GetPixel(tick.Position, panelRect);
