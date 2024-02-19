@@ -1,10 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Skia;
 using Avalonia.Input;
-using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
+using Avalonia.Threading;
 using ScottPlot.Control;
 using SkiaSharp;
 
