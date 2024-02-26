@@ -9,7 +9,6 @@ using ScottPlot.Control;
 using SkiaSharp;
 
 using Controls = Avalonia.Controls;
-using Avalonia.Threading;
 
 namespace ScottPlot.Avalonia;
 

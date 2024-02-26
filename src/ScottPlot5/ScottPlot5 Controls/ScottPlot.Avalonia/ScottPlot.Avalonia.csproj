@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFrameworks>net462;net6.0;net8.0</TargetFrameworks>
@@ -41,8 +41,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Avalonia" Version="11.1.999-cibuild0045032-beta" />
-        <PackageReference Include="Avalonia.Skia" Version="11.1.999-cibuild0045032-beta" />
+        <PackageReference Include="Avalonia" Version="11.1.999-cibuild0045346-beta" />
+        <PackageReference Include="Avalonia.Skia" Version="11.1.999-cibuild0045346-beta" />
         <ProjectReference Include="..\..\ScottPlot5\ScottPlot.csproj" />
     </ItemGroup>
 </Project>
