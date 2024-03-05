@@ -5,7 +5,9 @@ using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Threading;
+
 using ScottPlot.Control;
+
 using SkiaSharp;
 
 using Controls = Avalonia.Controls;
@@ -38,7 +40,7 @@ public class AvaPlot : Controls.Control, IPlotControl
         private readonly Plot _plot;
 
         public Rect Bounds { get; }
-        public bool HitTest(Point p) => Bounds.Contains(p);
+        public bool HitTest(Point p) => true;
         public bool Equals(ICustomDrawOperation? other) => false;
 
         public CustomDrawOp(Rect bounds, Plot plot)
@@ -56,38 +58,37 @@ public class AvaPlot : Controls.Control, IPlotControl
         {
             if (!context.TryGetFeature<ISkiaSharpApiLeaseFeature>(out var leaseFeature)) return;
             using var lease = leaseFeature.Lease();
-            PixelRect rect = new(0, (float)Bounds.Width, (float)Bounds.Height, 0);
-            _plot.Render(lease.SkCanvas, rect);
+            _plot.Render(lease.SkCanvas, new(0, (float)Bounds.Width, (float)Bounds.Height, 0));
         }
     }
 
     public override void Render(DrawingContext context)
     {
-        Rect controlBounds = new(Bounds.Size);
-        CustomDrawOp customDrawOp = new(controlBounds, Plot);
-        context.Custom(customDrawOp);
+        context.Custom(new CustomDrawOp(new(0, 0, Bounds.Width, Bounds.Height), Plot));
     }
 
     public void Refresh()
     {
-        //if (!_readyToRefresh) return;
-        //_readyToRefresh = false;
+        //if (!_readyForUpdate) return;
+        //_readyForUpdate = false;
         //_top?.RequestAnimationFrame(Tick);
         Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
     }
 
-    //private TopLevel? _top;
-    //private bool _readyToRefresh = true;
+    //private bool _readyForUpdate;
+    //private Controls.TopLevel? _top;
 
     //protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     //{
-    //    _top = TopLevel.GetTopLevel(this);
     //    base.OnAttachedToVisualTree(e);
+    //    _top = Controls.TopLevel.GetTopLevel(this);
+    //    _readyForUpdate = true;
     //}
 
     //private void Tick(TimeSpan timeSpan)
     //{
-    //    _readyToRefresh = true;
+    //    InvalidateVisual();
+    //    _readyForUpdate = true;
     //}
 
     public void ShowContextMenu(Pixel position)

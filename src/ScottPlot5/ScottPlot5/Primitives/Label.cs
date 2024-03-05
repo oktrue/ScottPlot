@@ -149,6 +149,10 @@ public class Label
 
     public void Render(SKCanvas canvas, float x, float y, SKPaint paint)
     {
+        // WTF?
+        //if (canvas.TotalMatrix.TransY == 64)
+        //    y += 32;
+
         PixelSize size = Measure(paint);
 
         float xOffset = size.Width * Alignment.HorizontalFraction();

@@ -61,7 +61,7 @@ public class VerticalLine : AxisLine
 
         float y = LabelOppositeAxis
             ? rp.DataRect.Top - Label.Padding
-            : rp.DataRect.Bottom + Label.Padding - 1;
+            : rp.DataRect.Bottom + Label.Padding;
 
         Label.Alignment = LabelOppositeAxis
             ? Alignment.LowerCenter

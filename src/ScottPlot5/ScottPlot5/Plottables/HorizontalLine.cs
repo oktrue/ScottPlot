@@ -75,6 +75,6 @@ public class HorizontalLine : AxisLine
         Label.AntiAlias = true;
         Label.Alignment = Alignment.MiddleLeft;
         Label.BackColor = LineStyle.Color;
-        Label.Render(rp.Canvas, rp.DataRect.Right + Label.Padding, y, paint);
+        Label.Render(rp.Canvas, x, y, paint);
     }
 }
