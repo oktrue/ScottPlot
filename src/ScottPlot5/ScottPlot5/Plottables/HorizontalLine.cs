@@ -69,8 +69,6 @@ public class HorizontalLine : AxisLine
             : Alignment.LowerCenter;
 
         // draw label outside the data area
-        rp.DisableClipping();
-
         using SKPaint paint = new();
         Label.AntiAlias = true;
         Label.Alignment = Alignment.MiddleLeft;
