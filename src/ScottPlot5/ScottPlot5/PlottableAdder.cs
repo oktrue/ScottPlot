@@ -22,6 +22,23 @@ public class PlottableAdder(Plot plot)
         return Palette.Colors[Plot.PlottableList.Count % Palette.Colors.Length];
     }
 
+    public Annotation Annotation(string text, Alignment alignment = Alignment.UpperLeft)
+    {
+        Annotation an = new()
+        {
+            Alignment = alignment,
+        };
+
+        an.Label.Text = text;
+        an.Label.BackColor = Colors.Yellow.WithAlpha(.75);
+        an.Label.BorderColor = Colors.Black;
+        an.Label.Padding = 5;
+
+        Plot.PlottableList.Add(an);
+
+        return an;
+    }
+
     public Arrow Arrow(Coordinates @base, Coordinates tip)
     {
         Arrow ar = new()
@@ -132,6 +149,14 @@ public class PlottableAdder(Plot plot)
         return Circle(new(xCenter, yCenter), radius);
     }
 
+    public ColorBar ColorBar(IHasColorAxis source, Edge edge = Edge.Right)
+    {
+        ColorBar colorBar = new(source, edge);
+
+        Plot.Axes.Panels.Add(colorBar);
+        return colorBar;
+    }
+
     public Crosshair Crosshair(double x, double y)
     {
         Crosshair ch = new()
@@ -141,14 +166,6 @@ public class PlottableAdder(Plot plot)
         ch.LineStyle.Color = GetNextColor();
         Plot.PlottableList.Add(ch);
         return ch;
-    }
-
-    public ColorBar ColorBar(IHasColorAxis source, Edge edge = Edge.Right)
-    {
-        ColorBar colorBar = new(source, edge);
-
-        Plot.Axes.Panels.Add(colorBar);
-        return colorBar;
     }
 
     public DataLogger DataLogger()
@@ -448,9 +465,15 @@ public class PlottableAdder(Plot plot)
             slices.Add(slice);
         }
 
-        var pie = Pie(slices);
+        Pie pie = new(slices);
         Plot.PlottableList.Add(pie);
         return pie;
+    }
+
+    public IPlottable Plottable(IPlottable plottable)
+    {
+        Plot.PlottableList.Add(plottable);
+        return plottable;
     }
 
     public Polygon Polygon(Coordinates[] coordinates)
@@ -466,12 +489,6 @@ public class PlottableAdder(Plot plot)
         Polygon poly = new(coordinates);
         Plot.PlottableList.Add(poly);
         return poly;
-    }
-
-    public IPlottable Plottable(IPlottable plottable)
-    {
-        Plot.PlottableList.Add(plottable);
-        return plottable;
     }
 
     public RadialGaugePlot RadialGaugePlot(IEnumerable<double> values)
@@ -566,6 +583,90 @@ public class PlottableAdder(Plot plot)
         scatter.LineStyle.Color = nextColor;
         scatter.MarkerStyle.Fill.Color = nextColor;
         Plot.PlottableList.Add(scatter);
+        return scatter;
+    }
+
+    public Scatter ScatterLine(IScatterSource source, Color? color = null)
+    {
+        var scatter = Scatter(source, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterLine(double[] xs, double[] ys, Color? color = null)
+    {
+        var scatter = Scatter(xs, ys, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterLine(Coordinates[] coordinates, Color? color = null)
+    {
+        var scatter = Scatter(coordinates, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterLine(List<Coordinates> coordinates, Color? color = null)
+    {
+        var scatter = Scatter(coordinates, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterLine<T1, T2>(T1[] xs, T2[] ys, Color? color = null)
+    {
+        var scatter = Scatter(xs, ys, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterLine<T1, T2>(List<T1> xs, List<T2> ys, Color? color = null)
+    {
+        var scatter = Scatter(xs, ys, color);
+        scatter.MarkerSize = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterPoints(IScatterSource source, Color? color = null)
+    {
+        var scatter = Scatter(source, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterPoints(double[] xs, double[] ys, Color? color = null)
+    {
+        var scatter = Scatter(xs, ys, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterPoints(Coordinates[] coordinates, Color? color = null)
+    {
+        var scatter = Scatter(coordinates, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterPoints(List<Coordinates> coordinates, Color? color = null)
+    {
+        var scatter = Scatter(coordinates, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterPoints<T1, T2>(T1[] xs, T2[] ys, Color? color = null)
+    {
+        var scatter = Scatter(xs, ys, color);
+        scatter.LineWidth = 0;
+        return scatter;
+    }
+
+    public Scatter ScatterPoints<T1, T2>(List<T1> xs, List<T2> ys, Color? color = null)
+    {
+        var scatter = Scatter(xs, ys, color);
+        scatter.LineWidth = 0;
         return scatter;
     }
 
