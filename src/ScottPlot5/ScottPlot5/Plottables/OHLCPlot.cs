@@ -33,7 +33,17 @@ public class OhlcPlot(IOHLCSource data) : IPlottable
 
     public IEnumerable<LegendItem> LegendItems => Enumerable.Empty<LegendItem>();
 
-    public AxisLimits GetAxisLimits() => Data.GetLimits();
+    public AxisLimits GetAxisLimits()
+    {
+        AxisLimits limits = Data.GetLimits(); // TODO: Data.GetSequentialLimits()
+
+        if (Sequential)
+        {
+            limits = new AxisLimits(0, Data.GetOHLCs().Count, limits.Bottom, limits.Top);
+        }
+
+        return limits;
+    }
 
     public void Render(RenderPack rp)
     {
