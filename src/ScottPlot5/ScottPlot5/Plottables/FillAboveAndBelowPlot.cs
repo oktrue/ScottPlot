@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-
-namespace ScottPlot.Plottables;
+﻿namespace ScottPlot.Plottables;
 
 public class FillAboveAndBelowPlot(IScatterSource data) : IPlottable
 {
@@ -114,7 +112,6 @@ public class FillAboveAndBelowPlot(IScatterSource data) : IPlottable
         };
 
         rp.Canvas.DrawPath(path, upperPaint);
-
         rp.Canvas.Restore();
 
         var belowClipRect = new SKRect(rp.DataRect.Left, bottom, rp.DataRect.Right, rp.DataRect.Bottom);
@@ -136,7 +133,6 @@ public class FillAboveAndBelowPlot(IScatterSource data) : IPlottable
         };
 
         rp.Canvas.DrawPath(path, lowerPaint);
-
         rp.Canvas.Restore();
 
         Drawing.DrawMarkers(rp.Canvas, paint, markerPixels, MarkerStyle);
