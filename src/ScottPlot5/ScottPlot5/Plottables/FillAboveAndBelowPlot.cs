@@ -69,7 +69,7 @@ public class FillAboveAndBelowPlot(IScatterSource data) : IPlottable
         if (!markerPixels.Any())
             return;
 
-        IEnumerable<Pixel> linePixels = ConnectStyle switch
+        Pixel[] linePixels = ConnectStyle switch
         {
             ConnectStyle.Straight => markerPixels,
             ConnectStyle.StepHorizontal => GetStepDisplayPixels(markerPixels, true),
@@ -144,7 +144,7 @@ public class FillAboveAndBelowPlot(IScatterSource data) : IPlottable
     /// </summary>
     /// <param name="points">Array of corner positions</param>
     /// <param name="right">Indicates that a line will extend to the right before rising or falling.</param>
-    public static IEnumerable<Pixel> GetStepDisplayPixels(Pixel[] pixels, bool right)
+    public static Pixel[] GetStepDisplayPixels(Pixel[] pixels, bool right)
     {
         Pixel[] pixelsStep = new Pixel[pixels.Count() * 2 - 1];
 
