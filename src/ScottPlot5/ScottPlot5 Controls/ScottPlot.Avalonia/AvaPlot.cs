@@ -69,27 +69,8 @@ public class AvaPlot : Controls.Control, IPlotControl
 
     public void Refresh()
     {
-        //if (!_readyForUpdate) return;
-        //_readyForUpdate = false;
-        //_top?.RequestAnimationFrame(Tick);
         Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
     }
-
-    //private bool _readyForUpdate;
-    //private Controls.TopLevel? _top;
-
-    //protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
-    //{
-    //    base.OnAttachedToVisualTree(e);
-    //    _top = Controls.TopLevel.GetTopLevel(this);
-    //    _readyForUpdate = true;
-    //}
-
-    //private void Tick(TimeSpan timeSpan)
-    //{
-    //    InvalidateVisual();
-    //    _readyForUpdate = true;
-    //}
 
     public void ShowContextMenu(Pixel position)
     {
