@@ -142,7 +142,8 @@ public class Plot : IDisposable
     /// <summary>
     /// Return a coordinate rectangle centered at a pixel.  Uses measurements
     /// from the most recent render.
-    /// <param name="pixel">Center point pixel</param>
+    /// <param name="x">Center point pixel's x</param>
+    /// <param name="y">Center point pixel's y</param>
     /// <param name="radius">Radius in pixels</param>
     /// <returns>The coordinate rectangle</returns>
     /// </summary>
