@@ -38,8 +38,7 @@
 
     <!-- Include additional files for the NuGet package -->
     <ItemGroup>
-        <None Include="../../../../dev/icon/v5/scottplot-icon-rounded-border-128.png" Pack="true"
-            PackagePath="icon.png" />
+        <None Include="../../../../dev/icon/v5/scottplot-icon-rounded-border-128.png" Pack="true" PackagePath="icon.png" />
         <None Include="nuget-readme.md" Pack="true" PackagePath="readme.md" />
     </ItemGroup>
 
@@ -49,8 +48,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Avalonia" Version="11.0.2" />
-        <PackageReference Include="Avalonia.Skia" Version="11.0.2" />
+        <PackageReference Include="Avalonia" Version="11.2.999-cibuild0046034-beta" />
+        <PackageReference Include="Avalonia.Skia" Version="11.2.999-cibuild0046034-beta" />
         <ProjectReference Include="..\..\ScottPlot5\ScottPlot.csproj" />
     </ItemGroup>
 </Project>

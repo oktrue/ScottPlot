@@ -47,8 +47,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="SkiaSharp" Version="2.*" />
-        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.*" />
+        <PackageReference Include="SkiaSharp" Version="2.88.7" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
     </ItemGroup>
 
     <!-- .NET Framework 4.6.1 requires packages to support C# 7 features -->

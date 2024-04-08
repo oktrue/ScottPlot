@@ -5,7 +5,9 @@ using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Threading;
+
 using ScottPlot.Control;
+
 using SkiaSharp;
 
 using Controls = Avalonia.Controls;
@@ -25,6 +27,7 @@ public class AvaPlot : Controls.Control, IPlotControl
 
     public AvaPlot()
     {
+        Focusable = true;
         ClipToBounds = true;
         DisplayScale = DetectDisplayScale();
         Interaction = new Interaction(this);
@@ -53,20 +56,15 @@ public class AvaPlot : Controls.Control, IPlotControl
 
         public void Render(ImmediateDrawingContext context)
         {
-            var leaseFeature = context.TryGetFeature<ISkiaSharpApiLeaseFeature>();
-            if (leaseFeature is null) return;
-
+            if (!context.TryGetFeature<ISkiaSharpApiLeaseFeature>(out var leaseFeature)) return;
             using var lease = leaseFeature.Lease();
-            PixelRect rect = new(0, (float)Bounds.Width, (float)Bounds.Height, 0);
-            _plot.Render(lease.SkCanvas, rect);
+            _plot.Render(lease.SkCanvas, new(0, (float)Bounds.Width, (float)Bounds.Height, 0));
         }
     }
 
     public override void Render(DrawingContext context)
     {
-        Rect controlBounds = new(Bounds.Size);
-        CustomDrawOp customDrawOp = new(controlBounds, Plot);
-        context.Custom(customDrawOp);
+        context.Custom(new CustomDrawOp(new(0, 0, Bounds.Width, Bounds.Height), Plot));
     }
 
     public void Reset()

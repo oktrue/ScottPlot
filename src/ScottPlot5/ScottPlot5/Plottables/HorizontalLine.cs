@@ -13,10 +13,10 @@ public class HorizontalLine : AxisLine
 
     public HorizontalLine()
     {
-        Label.Rotation = -90;
+        //Label.Rotation = -90;
         Label.Alignment = Alignment.LowerCenter;
-        Label.FontSize = 14;
-        Label.Bold = true;
+        Label.FontSize = 13;
+        Label.Bold = false;
         Label.ForeColor = Colors.White;
         Label.Padding = 5;
     }
@@ -69,9 +69,10 @@ public class HorizontalLine : AxisLine
             : Alignment.LowerCenter;
 
         // draw label outside the data area
-        rp.CanvasState.DisableClipping();
-
         using SKPaint paint = new();
+        Label.AntiAlias = true;
+        Label.Alignment = Alignment.MiddleLeft;
+        Label.BackColor = LineStyle.Color;
         Label.Render(rp.Canvas, x, y, paint);
     }
 }
