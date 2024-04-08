@@ -270,4 +270,45 @@ public class Scatter : ICategory
             myPlot.Add.Scatter(xs, ys);
         }
     }
+
+    public class ScatterSmooth : RecipeBase
+    {
+        public override string Name => "Scatter Plot with Smooth Lines";
+        public override string Description => "Scatter plots draw straight lines " +
+            "between points by default, but setting the Smooth property allows the " +
+            "scatter plot to connect points with smooth lines.";
+
+        [Test]
+        public override void Execute()
+        {
+            double[] xs = Generate.Consecutive(10);
+            double[] ys = Generate.RandomSample(10, 5, 15);
+
+            var sp = myPlot.Add.Scatter(xs, ys);
+            sp.Smooth = true;
+            sp.Label = "Smooth";
+            sp.LineWidth = 2;
+            sp.MarkerSize = 7;
+        }
+    }
+
+    public class ScatterLimitIndex : RecipeBase
+    {
+        public override string Name => "Limiting Display with Render Indexes";
+        public override string Description => "Although a scatter plot may contain " +
+            "a very large amount of data, much of it may be unpopulated. The user can " +
+            "define min and max render indexes, and only values within that range will " +
+            "be displayed when the scatter plot is rendered.";
+
+        [Test]
+        public override void Execute()
+        {
+            double[] xs = Generate.Consecutive(51);
+            double[] ys = Generate.Sin(51);
+
+            var sp = myPlot.Add.Scatter(xs, ys);
+            sp.MinRenderIndex = 10;
+            sp.MaxRenderIndex = 40;
+        }
+    }
 }

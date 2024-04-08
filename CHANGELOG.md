@@ -1,4 +1,14 @@
+## ScottPlot 5.0.26
+_Not yet on NuGet..._
+
+## ScottPlot 5.0.25
+_Published on [NuGet](https://www.nuget.org/profiles/ScottPlot) on 2024-04-08_
+* NuGet: Use snupkg format to include debug symbols (#3496)
+* Scatter: Fixed indexing error affecting `GetNearest()` (#3616) @Matthew-Chidlow @SongPing
+* Generate: Exposed a static `RandomWalker` instance for easily generating random walk datasets
+
 ## ScottPlot 5.0.24
+_Published on [NuGet](https://www.nuget.org/profiles/ScottPlot) on 2024-04-07_
 * Ticks: Modified `NumericFixedInterval` to add support for inverted axes (#3567) @Alexander-png
 * Bar plot: Improved support for labels on horizontally oriented bar plots (#3546, #3520) @aespitia @yui1227
 * Axis: Added new axis rules for edge locking, center locking, and tick snapping (#3547) @BrianAtZetica
@@ -16,6 +26,17 @@
 * Axes: Added optional arguments to `Plot.Axes.AutoScale()` to add support for nonstandard axes (#3592)
 * Axis Rules: Improved `Plot.Axes.SquareUnits()` to support inverted axes (#3592) @VisMotrix
 * WinForms: Improve `FormsPlot` disposal so the control displays properly when re-launched (#3593, #3589) @bwedding @Kruno313
+* Signal: Added support for inverted horizontal axes (#3594) @Excustic
+* Axes: New helper methods `Plot.Axes.InvertX()`, `Plot.Axes.RectifyX()`, and similar for Y (#3594)
+* Rendering: Improved performance for plot types with many lines (#3601) @drolevar
+* Function Plot: Improve support for functions with limited X ranges (#3595, #3603) @Dibyanshuaman @Matthew-Chidlow
+* Controls: All controls now include `Reset()` overloads for resetting or replacing the `Plot` (#3604, #3353) @aniketkumar7 @jon-rizzo
+* Scatter: The `Smooth` property now allows points to be connected with smooth lines (#3606, #3274, #3566) @bjschwarz @ja1234567 @bwedding @CBrauer
+* Layout: Added logic to reduce the size of axes which are visible but not used by any plottable (#3608)
+* Colorbar: Improved positioning and support for adding multiple colorbars to plots (#3294, #3560, #3586) @NateEbling @mawbydp @hnMel
+* Colorbar: Added a `Label` which users can customize to display an optional title (#3611) @mawbydp
+* SignalXY: Added support for markers and marker styling (#3602, #3609) @Giviruk
+* Scatter: Added support for `MinRenderIndex` and `MaxRenderIndex` to limit display to a portion of the data (#3614, #3308) @wellsw
 
 ## ScottPlot 5.0.23
 _Published on [NuGet](https://www.nuget.org/profiles/ScottPlot) on 2024-03-24_
