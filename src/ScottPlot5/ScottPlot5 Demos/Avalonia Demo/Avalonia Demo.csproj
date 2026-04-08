@@ -36,46 +36,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="11.3.4" />
-		<PackageReference Include="Avalonia.Desktop" Version="11.3.4" />
-		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.4" />
-		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.4" />
-		<!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.4">
-			<IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
-			<PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
-		</PackageReference>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+		<PackageReference Include="Avalonia" Version="12.0.0" />
+		<PackageReference Include="Avalonia.Desktop" Version="12.0.0" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="12.0.0" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\ScottPlot5 Controls\ScottPlot.Avalonia\ScottPlot.Avalonia.csproj" />
 		<ProjectReference Include="..\..\ScottPlot5 Cookbook\ScottPlot Cookbook.csproj" />
 		<ProjectReference Include="..\..\ScottPlot5\ScottPlot.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Update="Demos\AxisRulesWindow.axaml.cs">
-		  <DependentUpon>AxisRulesWindow.axaml</DependentUpon>
-		</Compile>
-		<Compile Update="Demos\CustomMouseActionsWindow.axaml.cs">
-		  <DependentUpon>CustomMouseActionsWindow.axaml</DependentUpon>
-		</Compile>
-		<Compile Update="Demos\BackgroundImagesWindow.axaml.cs">
-		  <DependentUpon>BackgroundImagesWindow.axaml</DependentUpon>
-		</Compile>
-		<Compile Update="Demos\MouseTrackerWindow.axaml.cs">
-		  <DependentUpon>MouseTrackerWindow.axaml</DependentUpon>
-		</Compile>
-		<Compile Update="Demos\MultiThreadingWindow.axaml.cs">
-			<DependentUpon>MultiThreadingWindow.axaml</DependentUpon>
-		</Compile>
-		<Compile Update="Demos\ShowValueUnderMouseWindow.axaml.cs">
-		  <DependentUpon>ShowValueUnderMouseWindow.axaml</DependentUpon>
-		</Compile>
-		<Compile Update="Demos\SimpleDemoWindow.axaml.cs">
-		  <DependentUpon>SimpleDemoWindow.axaml</DependentUpon>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
